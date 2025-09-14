@@ -406,42 +406,49 @@ class FilesystemDisplay {
                         break;
                     case "edex-theme":
                         icon = this.edexIcons.theme;
-                        type = "eDEX-UI theme";
+                        type = "eeDEX-UI theme";
                         break;
                     case "edex-kblayout":
                         icon = this.edexIcons.kblayout;
-                        type = "eDEX-UI keyboard layout";
+                        type = "eeDEX-UI keyboard layout";
                         break;
                     case "edex-settings":
                     case "edex-shortcuts":
                         icon = this.edexIcons.settings;
-                        type = "eDEX-UI config file";
+                        type = "eeDEX-UI config file";
                         break;
                     case "system":
                         icon = this.edexIcons.settings;
                         break;
                     case "edex-themesDir":
                         icon = this.edexIcons.themesDir;
-                        type = "eDEX-UI themes folder";
+                        type = "eeDEX-UI themes folder";
                         break;
                     case "edex-kblayoutsDir":
                         icon = this.edexIcons.kblayoutsDir;
-                        type = "eDEX-UI keyboards folder";
+                        type = "eeDEX-UI keyboards folder";
                         break;
                     default:
-                        let iconName = this.fileIconsMatcher(e.name);
-                        icon = this.icons[iconName];
-                        if (typeof icon === "undefined") {
-                            if (e.type === "file") icon = this.icons.file;
-                            if (e.type === "dir") {
-                                icon = this.icons.dir;
+                        if (e.type === "dir") {
+                            // Always treat directories as folders
+                            icon = this.icons.dir;
+                        
+                            // Preserve "special folder" logic if needed
+                            if (e.category && e.category !== "dir") {
+                                type = "special folder";
+                            } else {
                                 type = "folder";
                             }
-                            if (typeof icon === "undefined") icon = this.icons.other;
-                        } else if (e.category !== "dir") {
-                            type = iconName.replace("icon-", "");
                         } else {
-                            type = "special folder";
+                            // Files: try to match an icon
+                            let iconName = this.fileIconsMatcher(e.name);
+                            icon = this.icons[iconName];
+                        
+                            if (typeof icon === "undefined") {
+                                icon = this.icons.file; // fallback for unknown files
+                            } else {
+                                type = iconName.replace("icon-", "");
+                            }
                         }
                         break;
                 }
