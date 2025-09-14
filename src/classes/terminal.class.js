@@ -149,9 +149,55 @@ class Terminal {
             document.querySelectorAll('.xterm-helper-textarea').forEach(textarea => textarea.setAttribute('readonly', 'readonly'))
             this.term.focus();
 
+            this.lastSoundFX = Date.now();
+            
             this.Ipc.send("terminal_channel-"+this.port, "Renderer startup");
             this.Ipc.on("terminal_channel-"+this.port, (e, ...args) => {
                 switch(args[0]) {
+                    case "Token": {
+                        let token = args[1];
+                        let sockHost = opts.host || "127.0.0.1";
+                        let sockPort = this.port;
+                    
+                        this.socket = new WebSocket("ws://"+sockHost+":"+sockPort+"?token="+token);
+                    
+                        this.socket.onopen = () => {
+                            let attachAddon = new AttachAddon(this.socket);
+                            this.term.loadAddon(attachAddon);
+                            this.fit();
+                        };
+                        this.socket.onerror = e => {throw JSON.stringify(e)};
+                        this.socket.onclose = e => {
+                            if (this.onclose) {
+                                this.onclose(e);
+                            }
+                        };
+
+                        this.socket.addEventListener("message", e => {
+                            let d = Date.now();
+                        
+                            if (d - this.lastSoundFX > 30) {
+                                if(window.passwordMode == "false")
+                                    window.audioManager.stdout.play();
+                                this.lastSoundFX = d;
+                            }
+                            if (d - this.lastRefit > 10000) {
+                                this.fit();
+                            }
+                        
+                            // See #397
+                            if (!window.settings.experimentalGlobeFeatures) return;
+                            let ips = e.data.match(/((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)/g);
+                            if (ips !== null && ips.length >= 1) {
+                                ips = ips.filter((val, index, self) => { return self.indexOf(val) === index; });
+                                ips.forEach(ip => {
+                                    window.mods.globe.addTemporaryConnectedMarker(ip);
+                                });
+                            }
+                        });
+                    
+                        break;
+                    }
                     case "New cwd":
                         this.cwd = args[1];
                         this.oncwdchange(this.cwd);
@@ -172,46 +218,6 @@ class Terminal {
             this.resendCWD = () => {
                 this.oncwdchange(this.cwd || null);
             };
-
-            let sockHost = opts.host || "127.0.0.1";
-            let sockPort = this.port;
-
-            this.socket = new WebSocket("ws://"+sockHost+":"+sockPort);
-            this.socket.onopen = () => {
-                let attachAddon = new AttachAddon(this.socket);
-                this.term.loadAddon(attachAddon);
-                this.fit();
-            };
-            this.socket.onerror = e => {throw JSON.stringify(e)};
-            this.socket.onclose = e => {
-                if (this.onclose) {
-                    this.onclose(e);
-                }
-            };
-
-            this.lastSoundFX = Date.now();
-            this.socket.addEventListener("message", e => {
-                let d = Date.now();
-
-                if (d - this.lastSoundFX > 30) {
-                    if(window.passwordMode == "false")
-                        window.audioManager.stdout.play();
-                    this.lastSoundFX = d;
-                }
-                if (d - this.lastRefit > 10000) {
-                    this.fit();
-                }
-
-                // See #397
-                if (!window.settings.experimentalGlobeFeatures) return;
-                let ips = e.data.match(/((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)/g);
-                if (ips !== null && ips.length >= 1) {
-                    ips = ips.filter((val, index, self) => { return self.indexOf(val) === index; });
-                    ips.forEach(ip => {
-                        window.mods.globe.addTemporaryConnectedMarker(ip);
-                    });
-                }
-            });
 
             let parent = document.getElementById(opts.parentId);
             parent.addEventListener("wheel", e => {
@@ -304,9 +310,11 @@ class Terminal {
             this.Pty = require("node-pty");
             this.Websocket = require("ws").Server;
             this.Ipc = require("electron").ipcMain;
+            const crypto = require("crypto");
 
             this.renderer = null;
             this.port = opts.port || 3000;
+            this.secret = crypto.randomBytes(16).toString("hex"); // generate token
 
             this._closed = false;
             this.onclosed = () => {};
@@ -418,21 +426,23 @@ class Terminal {
                 this._closed = true;
                 this.onclosed(code, signal);
             });
-
+            
             this.wss = new this.Websocket({
                 port: this.port,
                 clientTracking: true,
-                verifyClient: info => {
-                    if (this.wss.clients.length >= 1) {
-                        return false;
+                verifyClient: (info, cb) => {
+                    const url = new URL(info.req.url, "http://localhost");
+                    if (url.searchParams.get("token") === this.secret) {
+                        cb(true);
                     } else {
-                        return true;
+                        cb(false, 401, "Unauthorized");
                     }
                 }
             });
             this.Ipc.on("terminal_channel-"+this.port, (e, ...args) => {
                 switch(args[0]) {
                     case "Renderer startup":
+                        e.sender.send("terminal_channel-" + this.port, "Token", this.secret);
                         this.renderer = e.sender;
                         if (!this._disableCWDtracking && this.tty._cwd) {
                             this.renderer.send("terminal_channel-"+this.port, "New cwd", this.tty._cwd);
