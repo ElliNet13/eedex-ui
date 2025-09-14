@@ -122,15 +122,24 @@ Thanks! If you feel like it, you can [follow me on Twitter](https://gaby.dev/twi
 
 **IMPORTANT NOTE:** the following instructions are meant for running eDEX from the latest unoptimized, unreleased, development version. If you'd like to get stable software instead, refer to [these](#how-do-i-get-it) instructions.
 
+#### Extra things for starting from source
+This project has got a bit broken since the orginal one was archived, so there are a few extra things you will need.
+- Python 3.10 (Run `npm config set python /usr/bin/python3.10` after installing)
+- nvm
+
 #### Starting from source:
 on *nix systems (You'll need the Xcode command line tools on macOS):
 - clone the repository
+- `nvm install`
+- `nvm use`
 - `npm run install-linux`
 - `npm run start`
 
 on Windows:
 - start cmd or powershell **as administrator**
 - clone the repository
+- `nvm install`
+- `nvm use`
 - `npm run install-windows`
 - `npm run start`
 
