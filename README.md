@@ -6,15 +6,15 @@
   <a href="#featured-in"><img alt="undefined" src="https://img.shields.io/github/downloads/ElliNet13/eedex-ui/total.svg?style=popout"></a>
   <a href="https://github.com/ElliNet13/eedex-ui/blob/master/LICENSE"><img alt="undefined" src="https://img.shields.io/github/license/ElliNet13/eedex-ui.svg?style=popout"></a>
   <br>
-  <a href="https://github.com/ElliNet13/eedex-ui/releases/download/v2.2.8/eeDEX-UI-Windows.exe" target="_blank"><img alt="undefined" src="https://badgen.net/badge/Download/Windows/?color=blue&icon=windows&label"></a>
-  <a href="https://github.com/ElliNet13/eedex-ui/releases/download/v2.2.8/eeDEX-UI-macOS.dmg" target="_blank"><img alt="undefined" src="https://badgen.net/badge/Download/macOS/?color=grey&icon=apple&label"></a>
-  <a href="https://github.com/ElliNet13/eedex-ui/releases/download/v2.2.8/eeDEX-UI-Linux-x86_64.AppImage" target="_blank"><img alt="undefined" src="https://badgen.net/badge/Download/Linux64/?color=orange&icon=terminal&label"></a>
   <a href="https://github.com/ElliNet13/eedex-ui/releases/download/v2.2.8/eeDEX-UI-Linux-arm64-AppImage" target="_blank">
   <br>
   <br><br><br>
 </p>
 
 eeDEX-UI is a fullscreen, cross-platform terminal emulator and system monitor that looks and feels like a sci-fi computer interface.
+
+**IMPORTANT NOTE**: Executable versions are only available for amd64 and amd32, new versions soon.
+if you are not on either amd64 or amd32 go to [Starting from source](https://github.com/ElliNet13/eedex-ui?tab=readme-ov-file#starting-from-source)
 
 ---
 
@@ -75,13 +75,9 @@ You can't disable them (yet) but you can hide them. See the `tron-notype` theme.
 On Linux and macOS, eeDEX tracks where you're going in your terminal tab to display the content of the current folder on-screen.
 Sadly, this is technically impossible to do on Windows right now, so the file browser reverts back to a "detached" mode. You can still use it to browse files & directories and click on files to input their path in the terminal.
 #### Can this run on a Raspberry Pi / ARM device?
-We provide prebuilt arm64 builds. For other platforms, see [this issue comment](https://github.com/ElliNet13/eedex-ui/issues/313#issuecomment-443465345), and the thread on issue [#818](https://github.com/ElliNet13/eedex-ui/issues/818).
-#### Is this repo actively maintained?
-No, after a 3 years run, this project has been archived. See the [announcement](https://github.com/ElliNet13/eedex-ui/releases/tag/v2.2.8).
+We provide prebuilt arm64 builds. For other platforms, see [this issue comment](https://github.com/ElliNet13/eedex-ui/issues/313#issuecomment-443465345), and the thread on issue [#818](https://github.com/ElliNet13/eedex-ui/issues/818)..
 #### How did you make this?
-Glad you're interested! See [#272](https://github.com/ElliNet13/eedex-ui/issues/272).
-#### This is so cool.
-Thanks! If you feel like it, you can [follow me on Twitter](https://gaby.dev/twitter) to hear about new stuff I'm making.
+Glad you're interested! See [#272](https://github.com/GitSquared/edex-ui/issues/272).
 
 <img width="220" src="https://78.media.tumblr.com/35d4ef4447e0112f776b629bffd99188/tumblr_mk4gf8zvyC1s567uwo1_500.gif" />
 
@@ -116,8 +112,9 @@ This project has got a bit broken since the orginal one was archived, so there a
 - nvm
 
 #### Starting from source:
-on *nix systems (You'll need the Xcode command line tools on macOS):
+on Linux (You'll need the Xcode command line tools on macOS):
 - clone the repository
+- If you are starting from source because your arch is not supported, use `git checkout <last release version>`
 - `nvm install`
 - `nvm use`
 - `npm run install-linux`
@@ -126,6 +123,7 @@ on *nix systems (You'll need the Xcode command line tools on macOS):
 on Windows:
 - start cmd or powershell **as administrator**
 - clone the repository
+- If you are starting from source because Windows is not supported, use `git checkout <last release version>`
 - `nvm install`
 - `nvm use`
 - `npm run install-windows`
@@ -143,14 +141,14 @@ The script will minify the source code, recompile native dependencies and create
 If you're interested in running the latest in-development version but don't want to compile source code yourself, you can can get pre-built nightly binaries on [GitHub Actions](https://github.com/ElliNet13/eedex-ui/actions): click the latest commits, and download the artifacts bundle for your OS.
 
 ## Credits
-eeDEX-UI's source code was primarily written by me, [Squared](https://github.com/GitSquared). If you want to get in touch with me or find other projects I'm involved in, check out [my website](https://gaby.dev).
+eeDEX-UI's source code was first written by GitSquared, [Squared](https://github.com/GitSquared). But now I forked it so yeah.
 
-[PixelyIon](https://github.com/PixelyIon) helped me get started with Windows compatibility and offered some precious advice when I started to work on this project seriously.
+[PixelyIon](https://github.com/PixelyIon) helped originally to get started with Windows compatibility and offered some precious advice when GitSquared started to work on this project seriously.
 
-[IceWolf](https://soundcloud.com/iamicewolf) composed the sound effects on v2.1.x and above. He makes really cool stuff, check out his music!
+[IceWolf](https://soundcloud.com/iamicewolf) composed the sound effects on v2.1.x and above. He makes really cool stuff, check out his music! Well since I forked this they don't make sound effects anymore but I am keeping credits here.
 
 ## Thanks
-Of course, eeDEX would never have existed if I hadn't stumbled upon the amazing work of [Seena](https://github.com/seenaburns) on [r/unixporn](https://reddit.com/r/unixporn).
+Of course, eeDEX would never have existed if GitSquared hadn't stumbled upon the amazing work of [Seena](https://github.com/seenaburns) on [r/unixporn](https://reddit.com/r/unixporn).
 
 This project uses a bunch of open-source libraries, frameworks and tools, see [the full dependency graph](https://github.com/ElliNet13/eedex-ui/network/dependencies).
 
