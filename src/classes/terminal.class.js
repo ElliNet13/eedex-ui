@@ -475,18 +475,15 @@ class Terminal {
                 ws.on("message", msg => {
                     // Accept only authenticated sockets
                     if (!ws._authenticated) {
-                        // Optionally: ws.close();
+                        // ws.close();
                         return;
                     }
                     // Accept only strings, and limit message size
                     if (typeof msg !== "string") {
-                        // Optionally: ws.close();
+                        // ws.close();
                         return;
                     }
-                    if (msg.length > 8192) { // arbitrary max size; adjust as needed
-                        // Optionally: ws.close();
-                        return;
-                    }
+        
                     // Optionally: further validation (e.g., strip dangerous chars)
                     this.tty.write(msg);
                 });
