@@ -12,6 +12,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
       - name: Cache Node modules
         uses: actions/cache@v4
         with:
@@ -70,6 +75,11 @@ jobs:
         with:
           platforms: arm
 
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
       - name: Cache Node modules
         uses: actions/cache@v4
         with:
@@ -121,6 +131,11 @@ jobs:
         with:
           platforms: arm64
 
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
       - name: Cache Node modules
         uses: actions/cache@v4
         with:
@@ -167,6 +182,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -202,6 +222,11 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
 
       - name: Cache Node modules
         uses: actions/cache@v4
