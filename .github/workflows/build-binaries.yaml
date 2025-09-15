@@ -10,16 +10,16 @@ jobs:
   build-linux:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Cache Node modules
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
 
       - name: Cache Electron binaries
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.cache/electron
           key: ${{ runner.os }}-electron-${{ hashFiles('**/package-lock.json') }}
@@ -30,7 +30,7 @@ jobs:
           sudo apt install -y libc6-dev-i386 gcc-multilib g++-multilib
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 14
           cache: 'npm'
@@ -47,7 +47,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload Linux AppImages
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Linux-AppImages
           path: dist/*.AppImage
@@ -63,21 +63,21 @@ jobs:
   build-linux-arm32:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Setup QEMU
-        uses: docker/setup-qemu-action@v2
+        uses: docker/setup-qemu-action@v3
         with:
           platforms: arm
 
       - name: Cache Node modules
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
 
       - name: Cache Electron binaries
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.cache/electron
           key: ${{ runner.os }}-electron-${{ hashFiles('**/package-lock.json') }}
@@ -98,7 +98,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload Linux-arm32 AppImage
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Linux-arm32-AppImage
           path: dist/*.AppImage
@@ -114,21 +114,21 @@ jobs:
   build-linux-arm64:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Setup QEMU
-        uses: docker/setup-qemu-action@v2
+        uses: docker/setup-qemu-action@v3
         with:
           platforms: arm64
 
       - name: Cache Node modules
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
 
       - name: Cache Electron binaries
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.cache/electron
           key: ${{ runner.os }}-electron-${{ hashFiles('**/package-lock.json') }}
@@ -149,7 +149,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload Linux-arm64 AppImage
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Linux-arm64-AppImage
           path: dist/*.AppImage
@@ -165,10 +165,10 @@ jobs:
   build-windows:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 14
           cache: 'npm'
@@ -185,7 +185,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload Windows installer
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Windows-Installer
           path: dist/*.exe
@@ -201,22 +201,22 @@ jobs:
   build-darwin:
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Cache Node modules
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
 
       - name: Cache Electron binaries
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/Library/Caches/electron
           key: ${{ runner.os }}-electron-${{ hashFiles('**/package-lock.json') }}
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 14
           cache: 'npm'
@@ -233,7 +233,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload macOS image
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: MacOS-Image
           path: dist/*.dmg
