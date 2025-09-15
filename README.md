@@ -2,8 +2,6 @@
   <br>
   <img alt="Logo" src="media/logo.png">
   <br><br>
-  <a href="https://lgtm.com/projects/g/ElliNet13/eedex-ui/context:javascript"><img alt="undefined" src="https://img.shields.io/lgtm/grade/javascript/g/ElliNet13/eedex-ui.svg?logo=lgtm&logoWidth=18"/></a>
-  <br>
   <a href="https://github.com/ElliNet13/eedex-ui/releases/latest"><img alt="undefined" src="https://img.shields.io/github/release/ElliNet13/eedex-ui.svg?style=popout"></a>
   <a href="#featured-in"><img alt="undefined" src="https://img.shields.io/github/downloads/ElliNet13/eedex-ui/total.svg?style=popout"></a>
   <a href="https://github.com/ElliNet13/eedex-ui/blob/master/LICENSE"><img alt="undefined" src="https://img.shields.io/github/license/ElliNet13/eedex-ui.svg?style=popout"></a>
@@ -11,10 +9,8 @@
   <a href="https://github.com/ElliNet13/eedex-ui/releases/download/v2.2.8/eeDEX-UI-Windows.exe" target="_blank"><img alt="undefined" src="https://badgen.net/badge/Download/Windows/?color=blue&icon=windows&label"></a>
   <a href="https://github.com/ElliNet13/eedex-ui/releases/download/v2.2.8/eeDEX-UI-macOS.dmg" target="_blank"><img alt="undefined" src="https://badgen.net/badge/Download/macOS/?color=grey&icon=apple&label"></a>
   <a href="https://github.com/ElliNet13/eedex-ui/releases/download/v2.2.8/eeDEX-UI-Linux-x86_64.AppImage" target="_blank"><img alt="undefined" src="https://badgen.net/badge/Download/Linux64/?color=orange&icon=terminal&label"></a>
-  <a href="https://github.com/ElliNet13/eedex-ui/releases/download/v2.2.8/eeDEX-UI-Linux-arm64-AppImage" target="_blank"><img alt="undefined" src="https://badgen.net/badge/Download/LinuxArm64/?color=orange&icon=terminal&label"></a>
-  <a href="https://aur.archlinux.org/packages/edex-ui" target="_blank"><img alt="undefined" src="https://badgen.net/badge/AUR/Package/cyan"></a>
+  <a href="https://github.com/ElliNet13/eedex-ui/releases/download/v2.2.8/eeDEX-UI-Linux-arm64-AppImage" target="_blank">
   <br>
-  <a href="https://github.com/ElliNet13/eedex-ui/releases/tag/v2.2.8"><strong><i>(Project archived oct. 18th 2021)</i></strong></a>
   <br><br><br>
 </p>
 
@@ -40,14 +36,6 @@ It might or might not be a joke taken too seriously.
 <p align="center">
   <em>Jump to: <br><a href="#features">Features</a> — <a href="#screenshots">Screenshots</a> — <a href="#qa">Questions & Answers</a> — <strong><a href="#how-do-i-get-it">Download</a></strong> — <a href="#featured-in">Featured In</a> — <a href="#useful-commands-for-the-nerds">Contributor Instructions</a> — <a href="#credits">Credits</a></em>
 </p>
-
-## Sponsor
-
-**Want to help support my open-source experiments and learn some cool JavaScript tricks at the same time?**
-
-Click the banner below and sign up to **Bytes**, the only newsletter cool enough to be recommended by eeDEX-UI.
-
-[![Bytes by UI.dev](media/sponsor-uidev-bytes.jpg)](https://ui.dev/bytes/?r=gabriel)
 
 ## Features
 - Fully featured terminal emulator with tabs, colors, mouse events, and support for `curses` and `curses`-like applications.
