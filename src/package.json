@@ -27,7 +27,7 @@
     "augmented-ui": "^1.1.2",
     "color": "3.2.1",
     "geolite2-redist": "^2.0.4",
-    "howler": "2.2.3",
+    "howler": "2.2.4",
     "maxmind": "4.3.2",
     "mime-types": "^2.1.33",
     "nanoid": "3.1.30",
