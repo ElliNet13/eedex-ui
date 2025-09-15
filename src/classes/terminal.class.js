@@ -466,11 +466,28 @@ class Terminal {
                 }
             });
             this.wss.on("connection", ws => {
+                // Mark this connection as authenticated (since verifyClient passed)
+                ws._authenticated = true;
                 this.onopened(this.tty._pid);
                 ws.on("close", (code, reason) => {
                     this.ondisconnected(code, reason);
                 });
                 ws.on("message", msg => {
+                    // Accept only authenticated sockets
+                    if (!ws._authenticated) {
+                        // Optionally: ws.close();
+                        return;
+                    }
+                    // Accept only strings, and limit message size
+                    if (typeof msg !== "string") {
+                        // Optionally: ws.close();
+                        return;
+                    }
+                    if (msg.length > 8192) { // arbitrary max size; adjust as needed
+                        // Optionally: ws.close();
+                        return;
+                    }
+                    // Optionally: further validation (e.g., strip dangerous chars)
                     this.tty.write(msg);
                 });
                 this.tty.onData(data => {
