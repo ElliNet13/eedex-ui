@@ -1,4 +1,4 @@
-// This is an helper script to generate the resources used by eDEX to display file-specific icons in fsDisp, from a fresh file-icons/source GitHub clone.
+// This is an helper script to generate the resources used by eeDEX to display file-specific icons in fsDisp, from a fresh file-icons/source GitHub clone.
 // Generated files are:
 // - src/assets/icons/file-icons.json: monolithic JSON files containing SVG data needed to draw all the icons.
 // - src/assets/misc/file-icons-match.js: script to match filenames to icons by using regex expressions.
@@ -182,6 +182,11 @@ var fileIconsMatchScript = `/*
 */
 function matchIcon(filename) {\n`;
 
+// Utility to escape regex special characters in a string
+function escapeRegExp(str) {
+    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
 // Parse the configuration file of file-icons/atom
 let atomConfig = CSON.parse(fs.readFileSync(path.join(__dirname, "file-icons", "atom", "config.cson"), {encoding: "utf8"}));
 Object.keys(atomConfig.directoryIcons).forEach(key => {
@@ -190,15 +195,21 @@ Object.keys(atomConfig.directoryIcons).forEach(key => {
     if (Array.isArray(config.match)) {
         config.match.forEach(key => {
             let match = key[0];
-            if (typeof match === "string") match = new RegExp(match.replace(/\./g, "\\.")+"$", "i"); // lgtm [js/incomplete-sanitization]
+            if (typeof match === "string") {
+                match = new RegExp(escapeRegExp(match) + "$", "i");
+            }
             fileIconsMatchScript += `    if (${match}.test(filename)) { return "${config.icon}"; }\n`;
         });
     } else {
-        if (typeof config.match === "string") config.match = new RegExp(config.match.replace(/\./g, "\\.")+"$", "i"); // lgtm [js/incomplete-sanitization]
+        if (typeof config.match === "string") {
+            config.match = new RegExp(escapeRegExp(config.match) + "$", "i");
+        }
         fileIconsMatchScript += `    if (${config.match}.test(filename)) { return "${config.icon}"; }\n`;
 
         if (config.alias) {
-            if (typeof config.alias === "string") config.alias = new RegExp(config.alias.replace(/\./g, "\\.")+"$", "i"); // lgtm [js/incomplete-sanitization]
+            if (typeof config.alias === "string") {
+                config.alias = new RegExp(escapeRegExp(config.alias) + "$", "i");
+            }
             fileIconsMatchScript += `    if (${config.alias}.test(filename)) { return "${config.icon}"; }\n`;
         }
     }
@@ -209,15 +220,21 @@ Object.keys(atomConfig.fileIcons).forEach(key => {
     if (Array.isArray(config.match)) {
         config.match.forEach(key => {
             let match = key[0];
-            if (typeof match === "string") match = new RegExp(match.replace(/\./g, "\\.")+"$", "i"); // lgtm [js/incomplete-sanitization]
+            if (typeof match === "string") {
+                match = new RegExp(escapeRegExp(match) + "$", "i");
+            }
             fileIconsMatchScript += `    if (${match}.test(filename)) { return "${config.icon}"; }\n`;
         });
     } else {
-        if (typeof config.match === "string") config.match = new RegExp(config.match.replace(/\./g, "\\.")+"$", "i"); // lgtm [js/incomplete-sanitization]
+        if (typeof config.match === "string") {
+            config.match = new RegExp(escapeRegExp(config.match) + "$", "i");
+        }
         fileIconsMatchScript += `    if (${config.match}.test(filename)) { return "${config.icon}"; }\n`;
 
         if (config.alias) {
-            if (typeof config.alias === "string") config.alias = new RegExp(config.alias.replace(/\./g, "\\.")+"$", "i"); // lgtm [js/incomplete-sanitization]
+            if (typeof config.alias === "string") {
+                config.alias = new RegExp(escapeRegExp(config.alias) + "$", "i");
+            }
             fileIconsMatchScript += `    if (${config.alias}.test(filename)) { return "${config.icon}"; }\n`;
         }
     }
