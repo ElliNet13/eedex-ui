@@ -60,12 +60,10 @@ jobs:
           path: dist/*.AppImage
           if-no-files-found: error
 
-      - name: Upload to GitHub Release (Linux)
+      - name: Upload artifacts to existing release
         if: github.event_name == 'release'
-        uses: ncipollo/release-action@v1
+        uses: Roang-zero1/github-upload-release-artifacts-action@v3.0.0
         with:
-          artifacts: dist/*.AppImage
-          token: ${{ secrets.GITHUB_TOKEN }}
-          allowUpdates: true
-          omitBodyDuringUpdate: true
-          omitNameDuringUpdate: true
+          args: "dist/*.AppImage"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
