@@ -67,3 +67,5 @@ jobs:
           artifacts: dist/*.AppImage
           token: ${{ secrets.GITHUB_TOKEN }}
           allowUpdates: true
+          omitBodyDuringUpdate: true
+          omitNameDuringUpdate: true
