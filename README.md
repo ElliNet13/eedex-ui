@@ -64,7 +64,7 @@ _Editing eeDEX-UI source code with `nvim` on eeDEX-UI 2.2 with the custom [`hori
 
 ## Q&A
 #### How do I get it?
-Click on the little badges under the eeDEX logo at the top of this page, or go to the [Releases](https://github.com/ElliNet13/eedex-ui/releases) tab, or download it through [one of the available repositories](https://repology.org/project/edex-ui/versions) (Homebrew, AUR...).
+Click on the little badges under the eeDEX logo at the top of this page, or go to the [Releases](https://github.com/ElliNet13/eedex-ui/releases) tab.
 
 Public release binaries are unsigned ([why](https://gaby.dev/posts/code-signing)). On Linux, you will need to `chmod +x` the AppImage file in order to run it.
 #### I have a problem!
@@ -76,13 +76,13 @@ On Linux and macOS, eeDEX tracks where you're going in your terminal tab to disp
 Sadly, this is technically impossible to do on Windows right now, so the file browser reverts back to a "detached" mode. You can still use it to browse files & directories and click on files to input their path in the terminal.
 #### Can this run on a Raspberry Pi / ARM device?
 We provide prebuilt arm64 builds. For other platforms, see [this issue comment](https://github.com/ElliNet13/eedex-ui/issues/313#issuecomment-443465345), and the thread on issue [#818](https://github.com/ElliNet13/eedex-ui/issues/818)..
-#### How did you make this?
+#### How was this made?
 Glad you're interested! See [#272](https://github.com/GitSquared/edex-ui/issues/272).
 
 <img width="220" src="https://78.media.tumblr.com/35d4ef4447e0112f776b629bffd99188/tumblr_mk4gf8zvyC1s567uwo1_500.gif" />
 
 
-## Featured in...
+## Orginal featured in...
 - [Linux Uprising Blog](https://www.linuxuprising.com/2018/11/edex-ui-fully-functioning-sci-fi.html)
 - [My post on r/unixporn](https://www.reddit.com/r/unixporn/comments/9ysbx7/oc_a_little_project_that_ive_been_working_on/)
 - [Korben article (in french)](https://korben.info/une-interface-futuriste-pour-vos-ecrans-tactiles.html)
