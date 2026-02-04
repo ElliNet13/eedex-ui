@@ -27,8 +27,8 @@ importers:
         specifier: 1.0.0
         version: 1.0.0
       node-pty:
-        specifier: ^1.0.0
-        version: 1.0.0
+        specifier: ^0.10.1
+        version: 0.10.1
       terser:
         specifier: ^5.9.0
         version: 5.44.0
@@ -1233,8 +1233,8 @@ packages:
   node-json-minify@1.0.0:
     resolution: {integrity: sha512-zpq6UA6aB9LyExDSiB49AXUvb1KD+L2AHSsk+AuWPMhoSI/3+9B/vP5xYOG88R03Khi0wGj7W86YDoU3fTEhZQ==}
 
-  node-pty@1.0.0:
-    resolution: {integrity: sha512-wtBMWWS7dFZm/VgqElrTvtfMq4GzJ6+edFI0Y0zyzygUSZMgZdraDUMUhCIvkjhJjme15qWmbyJbtAx4ot4uZA==}
+  node-pty@0.10.1:
+    resolution: {integrity: sha512-JTdtUS0Im/yRsWJSx7yiW9rtpfmxqxolrtnyKwPLI+6XqTAPW/O2MjS8FYL4I5TsMbH2lVgDb2VMjp+9LoQGNg==}
 
   nopt@6.0.0:
     resolution: {integrity: sha512-ZwLpbTgdhuZUnZzjd7nb1ZV+4DoiC6/sfiVKok72ym/4Tlf+DFdlHYmT2JPmcNNWV6Pi3SDf1kT+A4r9RTuT9g==}
@@ -3137,7 +3137,7 @@ snapshots:
 
   node-json-minify@1.0.0: {}
 
-  node-pty@1.0.0:
+  node-pty@0.10.1:
     dependencies:
       nan: 2.23.0
 
